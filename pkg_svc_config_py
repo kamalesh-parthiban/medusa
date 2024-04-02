@@ -1,0 +1,23 @@
+Install httpd and start a service in python
+
+import subprocess
+
+def install_httpd():
+    # Install httpd package using yum package manager
+    try:
+        subprocess.run(['yum', 'install', '-y', 'httpd'], check=True)
+        print("httpd installed successfully.")
+    except subprocess.CalledProcessError as e:
+        print("Error installing httpd:", e)
+
+def start_httpd():
+    # Start the httpd service
+    try:
+        subprocess.run(['systemctl', 'start', 'httpd'], check=True)
+        print("httpd service started successfully.")
+    except subprocess.CalledProcessError as e:
+        print("Error starting httpd service:", e)
+
+if __name__ == "__main__":
+    install_httpd()
+    start_httpd()
