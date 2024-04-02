@@ -1,0 +1,18 @@
+To delete deployment in particular namespace in python
+
+from kubernetes import client, config
+
+def delete_all_deployments(namespace="test"):
+    config.load_kube_config()
+    apps_v1 = client.AppsV1Api()
+    try:
+        deployments = apps_v1.list_namespaced_deployment(namespace).items
+        for deployment in deployments:
+            deployment_name = deployment.metadata.name
+            apps_v1.delete_namespaced_deployment(deployment_name, namespace)
+            print(f"Deployment '{deployment_name}' deleted successfully.")
+    except Exception as e:
+        print(f"Error deleting deployments in namespace '{namespace}': {e}")
+
+if __name__ == "__main__":
+    delete_all_deployments(namespace="test")
