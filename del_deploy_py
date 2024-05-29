@@ -16,4 +16,3 @@ def delete_all_deployments(namespace="test"):
 
 if __name__ == "__main__":
     delete_all_deployments(namespace="test")
-
